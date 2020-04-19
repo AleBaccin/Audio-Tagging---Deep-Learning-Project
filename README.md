@@ -30,7 +30,7 @@ with tqdm(total=Data_dir.shape[0], position=0, leave=True) as pbar:
 
 ## Installation on propietary machine
 
-If you would like to use the python notebook on your own pc you should first installa anaconda, so that you are able to create a virtual enviroment. Then you can installa all the missing requirements, which should be:
+If you would like to use the python notebook on your own pc you should first installa anaconda, so that you are able to create a virtual enviroment. Then you can install all the missing requirements, which should be:
 
 ```python
 
@@ -40,6 +40,11 @@ conda install keras
 conda install -c conda-forge librosa
 
 ```
+
+### Using a CUDA enabled GPU
+
+To enable the usage of the CPU from Keras, follow this guide: https://medium.com/@ab9.bhatia/set-up-gpu-accelerated-tensorflow-keras-on-windows-10-with-anaconda-e71bfa9506d1
+
 ## What is the started project doing?
 
 Check this for info:
@@ -47,7 +52,7 @@ https://medium.com/gradientcrescent/urban-sound-classification-using-convolution
 
 ## Notes
 
-IMPORTANT: Remember to always create your branch and do not ever to push to master, all the pieces will be merged before submission.
+IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
 
 What is this piece of code? Worry not, this is needed in case you have a cuda enabled gpu that keras can use, unless you install all the packages needed to make it work with the gpu, this can be left commented out.
 
