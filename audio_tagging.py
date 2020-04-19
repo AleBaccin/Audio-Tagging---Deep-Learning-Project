@@ -25,6 +25,10 @@ from path import Path
 from tqdm import tqdm
 from tensorflow.python.client import device_lib
 import tensorflow as tf
+import os
+
+# Fixing slow gpu initialization
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 print(device_lib.list_local_devices())
 
