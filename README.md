@@ -28,7 +28,7 @@ with tqdm(total=Data_dir.shape[0], position=0, leave=True) as pbar:
         pbar.update()
 ```
 
-# Installation on propietary machine
+## Installation on propietary machine
 
 If you would like to use the python notebook on your own pc you should first installa anaconda, so that you are able to create a virtual enviroment. Then you can installa all the missing requirements, which should be:
 
@@ -40,12 +40,12 @@ conda install keras
 conda install -c conda-forge librosa
 
 ```
-# What is the started project doing?
+## What is the started project doing?
 
 Check this for info:
 https://medium.com/gradientcrescent/urban-sound-classification-using-convolutional-neural-networks-with-keras-theory-and-486e92785df4
 
-# Notes
+## Notes
 
 What is this piece of code? Worry not, this is needed in case you have a cuda enabled gpu that keras can use, unless you install all the packages needed to make it work with the gpu, this can be left commented out.
 
