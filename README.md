@@ -80,12 +80,19 @@ https://medium.com/gradientcrescent/urban-sound-classification-using-convolution
 ⚠️ IMPORTANT: The gitignore will also prevent you from uploading the dataset to github, if you work locally, make sure to always respect this structure:
 
 C:.
+
 ├───images
+
 │   ├───meta
+
 │   ├───test
+
 │   └───train
+
 ├───meta
+
 ├───test
+
 └───train
 
 ⚠️ IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
