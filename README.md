@@ -77,6 +77,17 @@ https://medium.com/gradientcrescent/urban-sound-classification-using-convolution
 
 ## Notes
 
+⚠️ IMPORTANT: The gitignore will also prevent you from uploading the dataset to github, if you work locally, make sure to always respect this structure:
+
+C:.
+├───images
+│   ├───meta
+│   ├───test
+│   └───train
+├───meta
+├───test
+└───train
+
 ⚠️ IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
 
 What is this piece of code? Worry not, this is needed in case you have a cuda enabled gpu that keras can use, unless you install all the packages needed to make it work with the gpu, this can be left commented out.
