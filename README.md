@@ -43,7 +43,31 @@ conda install -c conda-forge librosa
 
 ### Using a CUDA enabled GPU
 
-To enable the usage of the CPU from Keras, follow this guide: https://medium.com/@ab9.bhatia/set-up-gpu-accelerated-tensorflow-keras-on-windows-10-with-anaconda-e71bfa9506d1
+- Install Anaconda (https://www.anaconda.com/distribution/)
+- Download Visual Studio (Wathever recent version, don't know why this is needed)
+- Install Kuda Toolkit (Need to register an Nvidia account - https://developer.nvidia.com/cuda-toolkit)
+- Download CuDNN https://developer.nvidia.com/rdp/cudnn-archive#a-collapse714-9
+    - > The cuDNN library contains three files: \bin\cudnn64_7.dll (the version number may be different), \include\cudnn.h and \lib\x64\cudnn.lib. You should copy them to the following locations:
+    - %CUDA_Installation_directory%\bin\cudnn64_7.dll
+    - % CUDA_Installation_directory %\include\cudnn.h
+    - % CUDA_Installation_directory %\lib\x64\cudnn.lib
+    -  > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0
+- Add System Env Variables 
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\lib\x64
+- Restart
+- Install Tensorflow
+    - conda create -n venv python=3.7 anaconda
+    - conda activate venv
+    - conda install keras
+    - conda install -c conda-forge librosa
+- We need to install tensorflow-gpu so:
+    - conda uninstall tensorflow (installed by keras)
+    - conda install tensorflow-gpu
+    - conda reinstall keras (to validate the reinstallation of tensorflow)
+   
+More Info: https://medium.com/@ab9.bhatia/set-up-gpu-accelerated-tensorflow-keras-on-windows-10-with-anaconda-e71bfa9506d1
 
 ## What is the started project doing?
 
