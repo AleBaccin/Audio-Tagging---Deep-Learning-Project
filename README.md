@@ -77,6 +77,8 @@ https://medium.com/gradientcrescent/urban-sound-classification-using-convolution
 
 ## Notes
 
+⚠️ IMPORTANT: The Network runs for only 1 epoch, this is to quickly check if the whole program works.
+
 ⚠️ IMPORTANT: The gitignore will also prevent you from uploading the dataset to github, if you work locally, make sure to always respect this structure:
 
 C:.
