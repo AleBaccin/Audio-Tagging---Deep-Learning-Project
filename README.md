@@ -1,7 +1,7 @@
 # Audio-Tagging---Deep-Learning-Project
 Deep Learning Project for automatic audio tagging.
 
-## Installation
+## Use on Google Colab
 
 As a shared Drive folder was created, the jupiter Notebook can be run as it is on Google Colab. Note that the pieces of code in which the images get generated from the .wav files should not be run, as this will overwrite the images already present on Drive, if one want to generate custom images to try a new approach a temporary folder should be used.
 
