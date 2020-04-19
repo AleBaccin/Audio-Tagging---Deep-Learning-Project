@@ -47,16 +47,16 @@ conda install -c conda-forge librosa
 2. Download Visual Studio (Wathever recent version, don't know why this is needed)
 3. Install Kuda Toolkit (Need to register an Nvidia account - https://developer.nvidia.com/cuda-toolkit)
 4. Download CuDNN https://developer.nvidia.com/rdp/cudnn-archive#a-collapse714-9
-    > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0
+    > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X
     
     > The cuDNN library contains three files: \bin\cudnn64_7.dll (the version number may be different), \include\cudnn.h and \lib\x64\cudnn.lib. You should copy them to the following locations:
     - %CUDA_Installation_directory%\bin\cudnn64_7.dll
     - % CUDA_Installation_directory %\include\cudnn.h
     - % CUDA_Installation_directory %\lib\x64\cudnn.lib
 5. Add System Env Variables 
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\lib\x64
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\libnvvp
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\bin
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\lib\x64
 6. Restart PC
 7. Install Tensorflow:
     - conda create -n venv python=3.7 anaconda
@@ -99,7 +99,14 @@ C:.
 
 ⚠️ IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
 
-What is this piece of code? Worry not, this is needed in case you have a cuda enabled gpu that keras can use, unless you install all the packages needed to make it work with the gpu, this can be left commented out.
+If you install your cuda libraries and set up everything but when you run your model you get this error:
+
+```
+tensorflow.python.framework.errors_impl.UnknownError:  Failed to get convolution algorithm. This is probably because cuDNN failed to initialize, so try looking to see if a warning log message was printed 
+above.
+         [[node conv2d_1/convolution (defined at C:\tools\Anaconda3\envs\venv\lib\site-packages\keras\backend\tensorflow_backend.py:3009) ]] [Op:__inference_keras_scratch_graph_1779]
+```
+Uncomment this:
 
 ```python
 
