@@ -1,3 +1,9 @@
+FSDKaggle2018.audio_test/
+FSDKaggle2018.audio_train/
+images/
+meta/
+settings.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
