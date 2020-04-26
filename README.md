@@ -15,11 +15,11 @@ As a shared Drive folder was created, the jupiter Notebook can be run as it is o
 def create_spectrogram(filename,name, folder):
     # ...
     #change this line 
-    filename  = '/content/drive/Shared drives/Deep Learning Gang 👺/images/' + folder + '/' + name + '.jpg'
+    filename  = '.../images/' + folder + '/' + name + '.jpg'
     # ...
 
 #Generation
-Data_dir=np.array(glob("/content/drive/Shared drives/Deep Learning Gang 👺/wavs_train/*"))
+Data_dir=np.array(glob(".../train/*"))
 
 with tqdm(total=Data_dir.shape[0], position=0, leave=True) as pbar:
     for file in tqdm(Data_dir, position=0, leave=True):
@@ -36,9 +36,9 @@ If you would like to use the python notebook on your own pc you should first ins
 
 conda create -n venv python=3.7 anaconda
 conda activate venv
-conda install keras
+conda install tensorflow-gpu
 conda install -c conda-forge librosa
-
+conda install numba==0.48.0 (This is to avoid a Warning)
 ```
 
 ### Using a CUDA enabled GPU
@@ -50,7 +50,7 @@ conda install -c conda-forge librosa
     > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0
     
     > The cuDNN library contains three files: \bin\cudnn64_7.dll (the version number may be different), \include\cudnn.h and \lib\x64\cudnn.lib. You should copy them to the following locations:
-    - %CUDA_Installation_directory%\bin\cudnn64_7.dll
+    - % CUDA_Installation_directory%\bin\cudnn64_7.dll
     - % CUDA_Installation_directory %\include\cudnn.h
     - % CUDA_Installation_directory %\lib\x64\cudnn.lib
 5. Add System Env Variables 
@@ -61,19 +61,19 @@ conda install -c conda-forge librosa
 7. Install Tensorflow:
     - conda create -n venv python=3.7 anaconda
     - conda activate venv
-    - conda install keras
-    - conda install -c conda-forge librosa
-8. We need to install tensorflow-gpu so:
-    - conda uninstall tensorflow (installed by keras)
     - conda install tensorflow-gpu
-    - conda reinstall keras (to validate the reinstallation of tensorflow)
+    - conda install -c conda-forge librosa
+    - conda install numba==0.48.0 (This is to avoid a Warning)
    
 More Info: https://medium.com/@ab9.bhatia/set-up-gpu-accelerated-tensorflow-keras-on-windows-10-with-anaconda-e71bfa9506d1
 
 ## What is the started project doing?
 
 Check this for info:
-https://medium.com/gradientcrescent/urban-sound-classification-using-convolutional-neural-networks-with-keras-theory-and-486e92785df4
+- https://medium.com/gradientcrescent/urban-sound-classification-using-convolutional-neural-networks-with-keras-theory-and-486e92785df4
+- https://towardsdatascience.com/ensembling-convnets-using-keras-237d429157eb
+- https://medium.com/@vijayabhaskar96/tutorial-on-keras-flow-from-dataframe-1fd4493d237c
+- https://www.kaggle.com/CVxTz/audio-data-augmentation
 
 ## Notes
 
@@ -84,29 +84,11 @@ C:.
 │   ├───meta
 │   ├───test
 │   └───train
+├───runs
 ├───meta
 ├───test
 └───train
 
 ⚠️ IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
-
-What is this piece of code? Worry not, this is needed in case you have a cuda enabled gpu that keras can use, unless you install all the packages needed to make it work with the gpu, this can be left commented out.
-
-```python
-
-#WARNING: USE ONLY WHEN RUNNING WITH GPUs WITH CUDA ENABLED
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-  try:
-    # Currently, memory growth needs to be the same across GPUs
-    for gpu in gpus:
-      tf.config.experimental.set_memory_growth(gpu, True)
-    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-  except RuntimeError as e:
-    # Memory growth must be set before GPUs have been initialized
-    print(e)
-    
-```
 
 

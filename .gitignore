@@ -9,6 +9,8 @@ images/
 meta/
 test/
 train/
+logs/
+runs/
 
 # C extensions
 *.so
