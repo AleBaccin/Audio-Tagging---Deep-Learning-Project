@@ -47,16 +47,16 @@ conda install numba==0.48.0 (This is to avoid a Warning)
 2. Download Visual Studio (Wathever recent version, don't know why this is needed)
 3. Install Kuda Toolkit (Need to register an Nvidia account - https://developer.nvidia.com/cuda-toolkit)
 4. Download CuDNN https://developer.nvidia.com/rdp/cudnn-archive#a-collapse714-9
-    > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X
+    > By default, % CUDA_Installation_directory % points to C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0
     
     > The cuDNN library contains three files: \bin\cudnn64_7.dll (the version number may be different), \include\cudnn.h and \lib\x64\cudnn.lib. You should copy them to the following locations:
     - % CUDA_Installation_directory%\bin\cudnn64_7.dll
     - % CUDA_Installation_directory %\include\cudnn.h
     - % CUDA_Installation_directory %\lib\x64\cudnn.lib
 5. Add System Env Variables 
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\libnvvp
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\bin
-    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\vX.X\lib\x64
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\libnvvp
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin
+    - C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\lib\x64
 6. Restart PC
 7. Install Tensorflow:
     - conda create -n venv python=3.7 anaconda
@@ -77,59 +77,18 @@ Check this for info:
 
 ## Notes
 
-⚠️ IMPORTANT: The Network runs for only 1 epoch, this is to quickly check if the whole program works.
-
 ⚠️ IMPORTANT: The gitignore will also prevent you from uploading the dataset to github, if you work locally, make sure to always respect this structure:
 
 C:.
-
 ├───images
-
 │   ├───meta
-
 │   ├───test
-
 │   └───train
-<<<<<<< HEAD
 ├───runs
-=======
-
->>>>>>> 8ad7aa8262627b798903ea8ec79c67584c562069
 ├───meta
-
 ├───test
-
 └───train
 
 ⚠️ IMPORTANT: Remember to always create your branch and do not ever push to master, all the pieces will be merged before submission.
 
-<<<<<<< HEAD
-=======
-If you install your cuda libraries and set up everything but when you run your model you get this error:
-
-```
-tensorflow.python.framework.errors_impl.UnknownError:  Failed to get convolution algorithm. This is probably because cuDNN failed to initialize, so try looking to see if a warning log message was printed 
-above.
-         [[node conv2d_1/convolution (defined at C:\tools\Anaconda3\envs\venv\lib\site-packages\keras\backend\tensorflow_backend.py:3009) ]] [Op:__inference_keras_scratch_graph_1779]
-```
-Uncomment this:
-
-```python
-
-#WARNING: USE ONLY WHEN RUNNING WITH GPUs WITH CUDA ENABLED
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-  try:
-    # Currently, memory growth needs to be the same across GPUs
-    for gpu in gpus:
-      tf.config.experimental.set_memory_growth(gpu, True)
-    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
-  except RuntimeError as e:
-    # Memory growth must be set before GPUs have been initialized
-    print(e)
-    
-```
-
->>>>>>> 8ad7aa8262627b798903ea8ec79c67584c562069
 
