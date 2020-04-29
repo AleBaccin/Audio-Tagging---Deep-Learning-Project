@@ -4,6 +4,7 @@ import librosa
 import librosa.display
 import pylab
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib import figure
 from tqdm import tqdm
 
@@ -79,3 +80,76 @@ def create_images_prepro(input_dir, output_dir):
             filename,name = file, file.split('\\')[-1].split('.')[0]
             create_spectrogram(filename,name, output_dir)
             pbar.update()
+            
+def create_mfcc_array(df, input_dir, sr, max_len, n_mfcc):
+    Data_dir=np.array(glob(f"{input_dir}\\*"))
+    
+    mfcc_vectors = []
+    labels = []
+    
+    with tqdm(total= len(df), position=0, leave=True) as pbar:
+        pbar.set_description('Creating mfcc of %d .wav files' % len(df))
+        for i, row in tqdm(df.iterrows(), position=0, leave=True):
+            wavfile = row['fname']
+            mfcc = wav2mfcc(f'{input_dir}\\{wavfile}', n_mfcc= n_mfcc, sr= sr, max_len= max_len)
+            mfcc_vectors.append(mfcc)
+            labels.append(row['label'])
+            pbar.update()
+            
+    return mfcc_vectors, labels
+
+def create_wav_array(df, input_dir, sr, max_len):
+    Data_dir=np.array(glob(f"{input_dir}\\*"))
+    
+    wav_vectors = []
+    labels = []
+    
+    with tqdm(total= len(df), position=0, leave=True) as pbar:
+        pbar.set_description('Creating np.array description of %d .wav files' % len(df))
+        for i, row in tqdm(df.iterrows(), position=0, leave=True):
+            wavfile = row['fname']
+            wave = wav(f'{input_dir}\\{wavfile}', sr= sr, max_len= max_len)
+            wav_vectors.append(wave)
+            labels.append(row['label'])
+            pbar.update()
+            
+    return wav_vectors, labels
+            
+def wav2mfcc(file_path, n_mfcc, sr, max_len):
+    wave = wav(file_path, sr, max_len)
+    
+    mfcc = librosa.feature.mfcc(wave, sr=sr, n_mfcc=n_mfcc)
+    mfcc = np.expand_dims(mfcc, axis=-1)
+    
+    return mfcc
+
+def wav(file_path, sr, max_len):
+    wave, _ = librosa.load(file_path, sr=sr, res_type='kaiser_fast')
+    true_length = sr * max_len
+    
+    if len(wave) > true_length:
+        max_offset = len(wave) - true_length
+        offset = np.random.randint(max_offset)
+        wave = wave[offset:(true_length+offset)]
+    else:
+        if true_length > len(wave):
+            max_offset = true_length - len(wave)
+            offset = np.random.randint(max_offset)
+        else:
+            offset = 0
+        wave = np.pad(wave, (offset, true_length - len(wave) - offset), "constant")
+        
+    return wave
+
+def audio_norm(data):
+    max_data = np.max(data)
+    min_data = np.min(data)
+    data = (data-min_data)/(max_data-min_data+1e-6)
+    return data-0.5
+
+def mfcc_input_sizes(n_mfcc, sr, max_len):
+    return (n_mfcc, 1 + int(np.floor((sr*max_len)/512)), 1)
+
+def wav_input_sizes(sr, max_len):
+    return (sr*max_len, 1)
+    
