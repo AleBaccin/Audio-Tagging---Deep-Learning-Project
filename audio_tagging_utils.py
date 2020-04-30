@@ -45,9 +45,24 @@ def create_mfcc_array(df, input_dir, sr, max_len, n_mfcc):
     
     with tqdm(total= len(df), position=0, leave=True) as pbar:
         pbar.set_description('Creating mfcc of %d .wav files' % len(df))
-        for row in tqdm(df.iterrows(), position=0, leave=True):
+        for i, row in tqdm(df.iterrows(), position=0, leave=True):
             wavfile = row['fname']
             mfcc = wav2mfcc(os.path.join(input_dir, wavfile), n_mfcc= n_mfcc, sr= sr, max_len= max_len)
+            mfcc_vectors.append(mfcc)
+            labels.append(row['label'])
+            pbar.update()
+            
+    return mfcc_vectors, labels
+
+def create_mfcc_array_compressed(df, input_dir, sr, max_len, n_mfcc):    
+    mfcc_vectors = []
+    labels = []
+    
+    with tqdm(total= len(df), position=0, leave=True) as pbar:
+        pbar.set_description('Creating mfcc of %d .wav files' % len(df))
+        for i, row in tqdm(df.iterrows(), position=0, leave=True):
+            wavfile = row['fname']
+            mfcc = wav2mfcc_compressed(os.path.join(input_dir, wavfile), n_mfcc= n_mfcc, sr= sr, max_len= max_len)
             mfcc_vectors.append(mfcc)
             labels.append(row['label'])
             pbar.update()
@@ -60,7 +75,7 @@ def create_wav_array(df, input_dir, sr, max_len):
     
     with tqdm(total= len(df), position=0, leave=True) as pbar:
         pbar.set_description('Creating np.array description of %d .wav files' % len(df))
-        for row in tqdm(df.iterrows(), position=0, leave=True):
+        for i, row in tqdm(df.iterrows(), position=0, leave=True):
             wavfile = row['fname']
             wave = wav(os.path.join(input_dir, wavfile), sr= sr, max_len= max_len)
             wav_vectors.append(wave)
@@ -68,6 +83,20 @@ def create_wav_array(df, input_dir, sr, max_len):
             pbar.update()
             
     return wav_vectors, labels
+
+def wav2mfcc_compressed(file_path, n_mfcc, sr, max_len):
+    wave, sr = librosa.load(file_path, mono=True, sr=None)
+    wave = np.asfortranarray(wave[::3])
+    mfcc = librosa.feature.mfcc(wave, sr=sr, n_mfcc=n_mfcc)
+
+    if (max_len > mfcc.shape[1]):
+        pad_width = max_len - mfcc.shape[1]
+        mfcc = np.pad(mfcc, pad_width=((0, 0), (0, pad_width)), mode='constant')
+
+    else:
+        mfcc = mfcc[:, :max_len]
+    
+    return mfcc
             
 def wav2mfcc(file_path, n_mfcc, sr, max_len):
     wave = wav(file_path, sr, max_len)
@@ -98,6 +127,9 @@ def wav(file_path, sr, max_len):
 
 def mfcc_input_sizes(n_mfcc, sr, max_len):
     return (n_mfcc, 1 + int(np.floor((sr*max_len)/512)), 1)
+
+def mfcc_compressed_input_sizes(n_mfcc, max_len):
+    return (n_mfcc, max_len)
 
 def wav_input_sizes(sr, max_len):
     return (sr*max_len, 1)

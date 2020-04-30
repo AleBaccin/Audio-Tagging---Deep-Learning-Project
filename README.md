@@ -19,6 +19,10 @@ Deep Learning Project for automatic audio tagging.
 
 └───train
 
+## What are all these files for?
+
+The actualy Notebook where the full project resides is: audio_tagging.ipynb, the 'optimise' Notebook contains the work we did to optimse the 1d cnn.
+
 ## Installation
 
 If you would like to use the python notebook on your own pc it is advised to first install anaconda. Here are the requirements:

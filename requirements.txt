@@ -5,3 +5,7 @@ scikit-learn
 tensorflow-gpu >= 2.1
 # librosa 
 numba == 0.48.0
+pandas
+numby
+matplotlib
+tqdm
