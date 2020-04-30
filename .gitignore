@@ -2,6 +2,7 @@ FSDKaggle2018.audio_test/
 FSDKaggle2018.audio_train/
 images/
 meta/
+ensembled_predictions.csv
 settings.json
 
 # Byte-compiled / optimized / DLL files
