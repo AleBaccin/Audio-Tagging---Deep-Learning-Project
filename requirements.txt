@@ -1,11 +1,12 @@
-scikit-learn
+scikit-learn == 0.22.1
 
 # use tensorflow-gpu on cuda activated machines
 # uncomment librosa for when using pip, if using conda, check readme
-tensorflow-gpu >= 2.1
+# tensorflow-gpu >= 2.1 for CUDA enabled devices
+tensorflow >= 2.1
 # librosa 
 numba == 0.48.0
-pandas
-numby
-matplotlib
-tqdm
+pandas == 1.0.3
+numby == 1.18.1
+matplotlib == 3.1.3
+tqdm == 4.45.0
