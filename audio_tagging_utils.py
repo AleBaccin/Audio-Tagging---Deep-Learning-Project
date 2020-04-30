@@ -39,15 +39,13 @@ def create_images(input_dir, output_dir):
             create_spectrogram(filename,name, output_dir)
             pbar.update()
             
-def create_mfcc_array(df, input_dir, sr, max_len, n_mfcc):
-    Data_dir=np.array(glob(os.path.join(input_dir, '*')))
-    
+def create_mfcc_array(df, input_dir, sr, max_len, n_mfcc):    
     mfcc_vectors = []
     labels = []
     
     with tqdm(total= len(df), position=0, leave=True) as pbar:
         pbar.set_description('Creating mfcc of %d .wav files' % len(df))
-        for i, row in tqdm(df.iterrows(), position=0, leave=True):
+        for row in tqdm(df.iterrows(), position=0, leave=True):
             wavfile = row['fname']
             mfcc = wav2mfcc(os.path.join(input_dir, wavfile), n_mfcc= n_mfcc, sr= sr, max_len= max_len)
             mfcc_vectors.append(mfcc)
@@ -57,14 +55,12 @@ def create_mfcc_array(df, input_dir, sr, max_len, n_mfcc):
     return mfcc_vectors, labels
 
 def create_wav_array(df, input_dir, sr, max_len):
-    Data_dir=np.array(glob(os.path.join(input_dir, '*')))
-    
     wav_vectors = []
     labels = []
     
     with tqdm(total= len(df), position=0, leave=True) as pbar:
         pbar.set_description('Creating np.array description of %d .wav files' % len(df))
-        for i, row in tqdm(df.iterrows(), position=0, leave=True):
+        for row in tqdm(df.iterrows(), position=0, leave=True):
             wavfile = row['fname']
             wave = wav(os.path.join(input_dir, wavfile), sr= sr, max_len= max_len)
             wav_vectors.append(wave)
@@ -81,6 +77,7 @@ def wav2mfcc(file_path, n_mfcc, sr, max_len):
     
     return mfcc
 
+#wav files files, are cutting/padded to respect the 2 seconds threshold
 def wav(file_path, sr, max_len):
     wave, _ = librosa.load(file_path, sr=sr, res_type='kaiser_fast')
     true_length = sr * max_len
