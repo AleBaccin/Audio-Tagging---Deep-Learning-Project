@@ -1,7 +1,7 @@
 # Audio-Tagging---Deep-Learning-Project
 Deep Learning Project for automatic audio tagging.
 
-The Notebook 'audio_tagging' is what it is actually used to generate the best weights and models, the 'testing' notebook can be used when pre-trained weights are available. This Notebook will just .fit for 1 epoch to adjust the model's architecture without saving any weights, then It will load the pre-trained weights and perform all the predictions. The 'optimization' Notebook is what was used to optimize the model's Dropouts.
+The Notebook 'audio_tagging' is used to generate the best weights and models, the 'testing' notebook can be used when pre-trained weights are available. This Notebook will just .fit for 1 epoch to adjust the model's architecture without saving any weights, then It will load the pre-trained weights and perform all the predictions. The 'optimization' Notebook is what was used to optimize the model's Dropouts.
 
 ⚠️ IMPORTANT: The folder in which the notebook will run requires the following structure. Where 'meta' is the directory in which train.csv and test.csv reside, 'train' and 'test' folders store the respective .wav files and 'meta/train' and 'meta/test' store the respective .jpg images, in 'runs', the necessary file for each model's run will be stored. The 'runs', 'images/test', 'images/train' are generate by the Notebook, while meta, test and train need to befined by the user.
 
@@ -21,10 +21,6 @@ The Notebook 'audio_tagging' is what it is actually used to generate the best we
 
 └───train
 
-## What are all these files for?
-
-The actualy Notebook where the full project resides is: audio_tagging.ipynb, the 'optimise' Notebook contains the work we did to optimse the 1d cnn.
-
 ## Installation
 
 If you would like to use the python notebook on your own pc it is advised to first install anaconda. Here are the requirements:
@@ -39,7 +35,7 @@ conda install numba==0.48.0
 conda install scikit-learn
 ```
 
-Alternatively, the requirements file could be used.
+Alternatively, the requirements file could be used. Librosa has to be installed manually as it uses conda-forge.
 
 ```
 conda install --file requirements.txt
