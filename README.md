@@ -3,7 +3,9 @@ Deep Learning Project for automatic audio tagging.
 
 The Notebook 'audio_tagging' is used to generate the best weights and models, the 'testing' notebook can be used when pre-trained weights are available. This Notebook will just .fit for 1 epoch to adjust the model's architecture without saving any weights, then It will load the pre-trained weights and perform all the predictions. The 'optimization' Notebook is what was used to optimize the model's Dropouts.
 
-⚠️ IMPORTANT: The folder in which the notebook will run requires the following structure. Where 'meta' is the directory in which train.csv and test.csv reside, 'train' and 'test' folders store the respective .wav files and 'meta/train' and 'meta/test' store the respective .jpg images, in 'runs', the necessary file for each model's run will be stored. The 'runs', 'images/test', 'images/train' are generate by the Notebook, while meta, test and train need to befined by the user.
+⚠️ IMPORTANT: The folder in which the notebook will run requires the following structure. Where 'meta' is the directory in which train.csv and test.csv reside, 'train' and 'test' folders store the respective .wav files and 'meta/train' and 'meta/test' store the respective .jpg images, in 'runs', the necessary file for each model's run will be stored. 
+
+⚠️ IMPORTANT: The 'runs', 'images/test', 'images/train' are generate by the Notebook, while meta, test and train need to befined by the user. The content of 'images/test' and 'images/train', as well as all other files needed are generated automatically.
 
 .
 
